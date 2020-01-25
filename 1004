@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+typedef struct Student{
+    string name;
+    string id;
+    int grade;
+    Student(){};
+    Student(string n, string i, int g){
+        name = n;
+        id = i;
+        grade = g;
+    }
+}Student;
+int main()
+{
+    int n;
+    cin>>n;
+    Student stud[n+10];
+    Student maxstud("", "", -1);
+    Student minstud("", "", 101);
+    for(int i=0; i<n ;i++){
+        cin>>stud[i].name>>stud[i].id>>stud[i].grade;
+        if(maxstud.grade < stud[i].grade)
+            maxstud = stud[i];
+        if(minstud.grade > stud[i].grade)
+            minstud = stud[i];
+    }
+    cout<<maxstud.name<<" "<<maxstud.id<<endl;
+    cout<<minstud.name<<" "<<minstud.id<<endl;
+
+    return 0;
+}
