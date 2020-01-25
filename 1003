@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#define INF 0x3f3f3f;
+
+int main()
+{
+    int n;
+    string str;
+    cin>>n;
+    while(n--)
+    {
+        cin>>str;
+        int len = str.length();
+        bool flag = true;
+        int posP = INF;
+        int posT = -INF;
+         
+        //1.顺序查找记录P的位置
+        //2.查看P前是否全部为A
+        for(int i=0; i<len; i++)
+        {
+            if(str[i] != 'A' && str[i] != 'P')
+            {
+                flag = false;
+                break;
+            }
+            if(str[i] == 'P')
+            {
+                posP = i;
+                break;
+            }
+        }
+        
+        //1.逆序查找记录T的位置
+        //2.查看T后是否全部为A
+        for(int i = len-1; i > posP && flag; i--)
+        {
+            if(str[i] != 'A' && str[i] != 'T')
+            {
+                flag = false;
+                break;
+            }
+            if(str[i] == 'T')
+            {
+                posT = i;
+                break;
+            }
+        }
+        
+        //1.查看P和T之间是否全部为A
+        for(int i = posP+1; i<posT && flag; i++)
+        {
+            if(str[i] != 'A')
+                flag = false;
+        }
+        
+        //1.判断3段A序列是否满足要求
+        if(flag && (posP * (posT - posP - 1) != (len - 1 - posT) || posP + 1 >= posT))
+        {
+            flag = false;
+        }
+              
+        cout<<(flag?"YES":"NO")<<"\n";
+    }
+    
+    return 0;
+}
