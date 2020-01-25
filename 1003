@@ -1,3 +1,8 @@
+分析：
+1.保证P前，T后,P和T之间全A
+2.据题
+AAPATAA正确-->AAPAATAAAA正确-->AAPAAATAAAAAA正确-->...
+
 #include <iostream>
 #include <string>
 
