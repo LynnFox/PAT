@@ -1,0 +1,28 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int num, ind=0;
+    cin>>num;
+
+    int a = num/100;
+    while(a--){
+        cout<<"B";
+    }
+
+    num %=100;
+    a = num/10;
+    while(a--){
+        cout<<"S";
+    }
+
+    num %=10;
+    for(int i=1;i<=num;i++){
+        cout<<i;
+    }
+
+    return 0;
+}
+
