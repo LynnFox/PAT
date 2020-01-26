@@ -1,0 +1,52 @@
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+bool flag[1024];
+int num[512];
+int res[128];
+void Initial()
+{
+    for(int i=0; i<1024; i++){
+        flag[i] = false;
+    }
+}
+void Callatz(int a){
+    while(a!=1){
+        a=(a%2==0)?(a/2):(3*a+1)/2;
+        flag[a] = false;
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    Initial();
+    for(int i=0; i<n; i++){
+        cin>>num[i];
+        flag[num[i]] = true;
+    }
+
+    for(int i=0; i<n; i++){
+        int var = num[i];
+        if(flag[var]){
+            Callatz(var);
+        }
+    }
+
+    int ind = 0;
+
+    sort(num, num+n);
+    for(int i=0; i<n; i++){
+        if(flag[num[i]]){
+            res[ind++] = num[i];
+        }
+    }
+
+    for(int i=ind-1; i>=0; i--){
+        cout<<res[i]<<(i!=0?" ":"\n");
+    }
+    return 0;
+}
+
+
