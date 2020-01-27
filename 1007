@@ -1,0 +1,32 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int prime[n+10];
+    int ind=0;
+    prime[ind++] = 2;
+    for(int i=3; i<=n;i+=2){
+        bool flag = true;
+        for(int j = 0; j<ind&&flag; j++){
+            if(i % prime[j] == 0){
+                flag = false;
+            }
+        }
+        if(flag){
+            prime[ind++] = i;
+        }
+    }
+
+    int time = 0;
+    for(int i=1; i<ind; i++){
+        if(prime[i] - prime[i-1] == 2)
+            time++;
+    }
+
+    cout<<time<<endl;
+    return 0;
+}
