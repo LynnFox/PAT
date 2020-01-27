@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+void inverse(string arr[], int head, int tail){
+    for(int i=head, j=tail-1; i<j; i++, j--){
+        swap(arr[i], arr[j]);
+    }
+}
+
+int main()
+{
+    string words[80];
+    int ind=0;
+    while(cin>>words[ind++]){
+        char ch = getchar();
+        if(ch == '\n')
+            break;
+    }
+    inverse(words, 0, ind);
+    for(int i=0; i<ind; i++){
+        cout<<words[i]<<(i!=ind-1?" ":"\n");
+    }
+    return 0;
+}
