@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int getDigit(int num){
+    int digit = 0;
+    while(num){
+        num/=10;
+        digit++;
+    }
+    return digit;
+}
+bool IsTail(int num, int res){
+    int num_digit = getDigit(num);
+    int res_digit = getDigit(res);
+    int gap_digit = getDigit(res-num);
+    int time = 1;
+    while(num_digit--){
+        time *= 10;
+    }
+
+    if(gap_digit == res_digit && (res-num) % time == 0)
+        return true;
+    return false;
+}
+int main()
+{
+    int n, num;
+    cin>>n;
+    while(n--){
+        cin>>num;
+        if(num == 1){
+            cout<<1<<" "<<1<<endl;
+            continue;
+        }
+        int square = num * num;
+        bool flag = false;
+        for(int N=1; N<10&&(!flag); N++){
+            if(IsTail(num, N * square)){
+                cout<<N<<" "<<(N * square)<<endl;
+                flag = true;
+            }
+        }
+        if(!flag)
+            cout<<"No\n";
+    }
+    return 0;
+}
