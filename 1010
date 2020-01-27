@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+typedef struct Part{
+    int _ratio;
+    int _index;
+
+    void derivation(){
+        //计算系数、指数
+        _ratio = _ratio * _index;
+        _index -= 1;
+    }
+}Part;
+
+int main()
+{
+    Part parts[128];
+    int i=0;
+    while(cin>>parts[i]._ratio>>parts[i]._index){
+        char ch = getchar();
+        parts[i++].derivation();
+        if(ch == '\n')
+            break;
+    }
+
+    int time=0;
+    for(int j=0; j<i; j++){
+        if(parts[j]._ratio!=0){
+            cout<<(time!=0?" ":"")<<parts[j]._ratio<<" "<<parts[j]._index;
+            time++;
+        }
+    }
+    if(!time){//如果没有非零项，输出"0 0"结束
+        cout<<"0 0\n";
+    }
+    return 0;
+}
