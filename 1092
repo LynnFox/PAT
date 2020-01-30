@@ -1,0 +1,46 @@
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+using namespace std;
+typedef struct MoonCake{
+    int id;
+    int num;
+    MoonCake(){
+        id = 0;
+        num = 0;
+    }
+}MoonCake;
+
+bool cmp(MoonCake a, MoonCake b){
+    if(a.num == b.num)
+        return a.id < b.id;
+    return a.num > b.num;
+}
+int main()
+{
+    int N, M;
+    MoonCake mc[1024];
+    cin>>N>>M;
+    for(int j=0 ;j<N; j++){
+        mc[j].id = j+1;
+    }
+    for(int i=0; i<M; i++){
+        for(int j=0; j<N; j++){
+            int num;
+            cin>>num;
+            mc[j].num += num;
+        }
+    }
+    sort(mc, mc+N, cmp);
+    cout<<mc[0].num<<endl;
+    for(int i=0; i<N; i++){
+        cout<<mc[i].id;
+        if(mc[i].num != mc[i+1].num||i==N-1)
+        {
+            cout<<"\n";
+            break;
+        }
+        cout<<" ";
+    }
+    return 0;
+}
