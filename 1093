@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+    char A[1000], B[1000];
+    int i=0;
+    char ch;
+    for(int k=0; k<2; k++)
+    {
+        while(1)
+        {
+            ch = getchar();
+            if(ch == '\n')
+                break;
+            bool flag = true;
+            for(int j=0; j<i; j++)
+            {
+                if(A[j] == ch)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                A[i++]=ch;
+        }
+    }
+    printf("%s\n", A);
+    return 0;
+}
