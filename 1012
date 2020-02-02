@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+    int N, num;
+    int A1 = 0, A2 = 0, A3 = 0, A5 = 0;
+    double A4 = 0;
+    int time[8] = {0};
+    cin>>N;
+    for(int i=0; i<N; i++){
+        cin>>num;
+        switch(num % 5){
+        case 0:
+            if(num % 10 == 0){
+                A1 += num;
+                time[1]++;
+            }
+            break;
+        case 1:
+            A2 += (time[2] % 2 == 0)?num:(num*(-1));
+            time[2]++;
+            break;
+        case 2:
+            A3++;
+            time[3]++;
+            break;
+        case 3:
+            A4 += num;
+            time[4]++;
+            break;
+        case 4:
+            A5 = A5>=num?A5:num;
+            time[5]++;
+            break;
+        }
+    }
+    if(time[1])
+        cout<<A1<<" ";
+    else
+        cout<<"N ";
+
+    if(time[2])
+        cout<<A2<<" ";
+    else
+        cout<<"N ";
+
+    if(time[3])
+        cout<<A3<<" ";
+    else
+        cout<<"N ";
+    if(time[4])
+        printf("%.1f ", A4/(time[4]*1.0));
+    else
+        cout<<"N ";
+    if(time[5])
+        cout<<A5<<"\n";
+    else
+        cout<<"N\n";
+    return 0;
+}
