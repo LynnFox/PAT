@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+long long getP(string A, char DA){
+    int len = A.length();
+    int P = 0;
+    int temp = DA-'0';
+    for(int i=0; i<len; i++){
+        if(A[i] == DA){
+            P += temp;
+            temp *= 10;
+        }
+    }
+    return P;
+}
+int main()
+{
+    string A, B;
+    char DA, DB;
+    cin>>A>>DA>>B>>DB;
+    long long PA = getP(A, DA);
+    long long PB = getP(B, DB);
+    cout<<(PA+PB)<<endl;
+    return 0;
+}
