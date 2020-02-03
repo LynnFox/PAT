@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+typedef struct student{
+    string id;
+    int moral;
+    int ability;
+    int priority;
+    int sum;
+    void setSum(){
+        sum = moral + ability;
+    }
+    void setPriority(int L, int H){
+        if(moral >= H && ability >= H){
+            priority = 1;
+        } else if(moral >= H && ability >= L){
+            priority = 2;
+        } else if(moral >= L && ability >= L && moral >= ability){
+            priority = 3;
+        } else if(moral >= L && ability >= L){
+            priority = 4;
+        } else{
+            priority = 5;
+        }
+    }
+}student;
+bool cmp(student a, student b){
+    if(a.priority == b.priority){
+        if(a.sum == b.sum){
+            if(a.moral == b.moral){
+                return a.id < b.id;
+            }
+            return a.moral > b.moral;
+        }
+        return a.sum > b.sum;
+    }
+    return a.priority < b.priority;
+}
+
+int main()
+{
+    std::ios::sync_with_stdio(false);//不加会超时
+    int N, L, H;
+    cin>>N>>L>>H;
+    student stud[N+8];
+    for(int i=0; i<N; i++){
+        cin>>stud[i].id>>stud[i].moral>>stud[i].ability;
+        stud[i].setSum();
+        stud[i].setPriority(L, H);
+    }
+    sort(stud, stud+N, cmp);
+    int total = N;
+    for(; stud[total-1].priority==5; total--);
+    cout<<total<<endl;
+    for(int i=0; i<total; i++){
+        cout<<stud[i].id<<" "<<stud[i].moral<<" "<<stud[i].ability<<endl;
+    }
+    return 0;
+}
